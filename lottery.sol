@@ -1,15 +1,20 @@
-pragma solidity 0.8.22;
 
-contract lottery{
-    struct ticket{
+pragma solidity >=0.8.21;
+
+contract Lottery {
+    struct Ticket {
         string name;
-        uint lotterynumber;
+        uint ticketNumber;
     }
 
-    mapping(string => uint) public map;
+    mapping(uint => Ticket) public tickets;
 
-    function store(string memory name, uint lotterynumber ) public{
-        map[]=
+    function buyTicket(string memory name, uint ticketNumber) public returns (bool) {
+        if (tickets[ticketNumber].ticketNumber != 0) {
+            return false;
+        }
+
+        tickets[ticketNumber] = Ticket(name, ticketNumber);
+        return true;
     }
-
-} c
+}
